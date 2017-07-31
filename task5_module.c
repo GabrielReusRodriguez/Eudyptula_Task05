@@ -1,7 +1,8 @@
 #include <linux/module.h>
-#include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/usb.h>
+#include <linux/usb/input.h>
+#include <linux/hid.h>
 
 #define AUTHOR "Gabriel Reus Rodríguez"
 #define DESCRIPTION "Eudyptula Task05"
@@ -24,7 +25,12 @@
 
 static struct usb_device_id usb_table[] = {
 	{
-		USB_DEVICE(USB_VENDOR_ID, USB_PRODUCT_ID)
+		/*USB_DEVICE(USB_VENDOR_ID, USB_PRODUCT_ID)*/
+		USB_INTERFACE_INFO
+		(
+			USB_INTERFACE_CLASS_HID, USB_INTERFACE_SUBCLASS_BOOT,
+			USB_INTERFACE_PROTOCOL_KEYBOARD
+		)
 	}, { }
 };
 
